@@ -1,0 +1,45 @@
+
+
+
+.tools{
+    width: 7rem;
+    height: 8rem;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    
+
+
+}
+.tools img:not(:hover){
+    filter: grayscale(1);
+}
+.tools img{
+    width: 5rem;  
+    display: block;
+    transition: 0.5s;
+}
+.tools img:hover{
+ transform: scale(1.1);
+ 
+}
+
+
+@media screen and (max-width: 700px) {
+    
+    .tools{
+        width: 9rem;
+        height: 10rem;
+       
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      
+    }
+    .tools img{
+        width: 7rem;  
+        display: block;
+    }  
+}

@@ -1,0 +1,17 @@
+
+.navbar{
+    background-color: rgb(19, 18, 18);
+   
+    position: sticky;
+   
+    top: 0;
+}
+.logo{
+    width: 5rem;
+    
+
+}
+.navbar-brand{
+    display: flex;
+    align-items: center;
+}

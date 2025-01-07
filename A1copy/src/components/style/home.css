@@ -1,15 +1,23 @@
+
+.home-section{
+    background-color: brown;
+
+    
+}
 .home{
     display: flex;
     flex-wrap:wrap-reverse;
     justify-content: center;
     align-items: center;
-   padding-top: 3rem;
-   padding-bottom: 3rem;
-    
+    height: 100vh;
+  
+  
 
 }
 .home-left{
     flex-basis: 60%;
+    padding: 3rem;
+    
   
 }
 .home-right{
@@ -21,7 +29,9 @@
    font-size: 45px;
 }
 .p{
-    font-size: 25px;
+    font-size: 22px;
+    color: rgb(158, 155, 155);
+    font-weight: 600;
 }
 @media screen and (max-width: 992px) {
     .home-left{
