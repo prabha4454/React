@@ -1,9 +1,33 @@
 
 .whyus-section{
-background-color: white;
+    background-color: white;
 
     
 }
+.whyus-section h1{
+    color:rgb(21, 21, 21);
+    font-weight: 800;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding-block: 1rem;
+}
+.whyus-section p{
+    text-align: center;
+    font-size: 17px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: gray;
+}
+.whyus h2{
+    font-size: 21px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+
+  
+}
+.why-left ul li:nth-of-type(even){
+    padding-left: 5rem ;
+}
+
 .whyus{
     display: flex;
     flex-wrap:wrap-reverse;

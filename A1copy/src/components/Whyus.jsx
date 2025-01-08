@@ -8,9 +8,9 @@ export const Whyus = () => {
     <>
       <div className="container-fluid whyus-section ">
         <div className="container ">
-          <h1 className="h1  ">Why us ?</h1>
+          <h1>Why us ?</h1>
           <p>Partner with A1ideaz to embark on a transformative journey where technology meets business goals.</p>
-          <div className="whyus ">
+          <div className="whyus w-100">
             <div className="why-left">
               <ul>
                 <li >
@@ -55,7 +55,7 @@ export const Whyus = () => {
                 <li>
                   
                     <h2>Security and Reliability</h2>
-                    <p></p>
+                    <p>Whether it's securing your infrastructure or safeguarding your data, we prioritize the security and reliability of our solutions.</p>
                   
                 </li>
               </ul>
