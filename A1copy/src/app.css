@@ -3,6 +3,9 @@
     margin: 0;
     box-sizing: border-box;
 }
-.tools-section{
-    background-color: #f0f0f0;
+.tools-section {
+    background-color: #f1f8fb;
+}
+.service-section{
+    background-color: #f1f8fb;
 }

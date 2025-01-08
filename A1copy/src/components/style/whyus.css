@@ -1,0 +1,41 @@
+
+.whyus-section{
+background-color: white;
+
+    
+}
+.whyus{
+    display: flex;
+    flex-wrap:wrap-reverse;
+    justify-content: center;
+    align-items: center;
+   
+  
+  
+
+}
+.why-left{
+    flex-basis: 60%;
+    padding: 3rem;
+    
+  
+}
+.why-right{
+    flex-basis: 40%;
+  
+}
+
+
+@media screen and (max-width: 992px) {
+    .why-left{
+        flex-basis: 100%;
+        
+    }
+    .why-right{
+        flex-basis: 80%;
+        
+    }
+
+    
+     
+}
