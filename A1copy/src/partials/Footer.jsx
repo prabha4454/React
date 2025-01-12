@@ -9,10 +9,10 @@ export const Footer = () => {
     return (
         <>
             <div className="container-fluid bg-dark text-light">
-                <div className="container  footer-top">
-                    <div className=' footer-t-left'>
-                        <div className="d-flex gap-1 footer-menu ">
-                            <div className="item1 p-2 col-md-6 col-lg-3">
+                <div className="container row footer-top">
+                    <div className=' col footer-t-left'>
+                        <div className="row footer-menu ">
+                            <div className="item1 p-2 col-md-5 col-lg-3">
                                 <h2 className="text-white ">A1IDEAZ</h2>
                                 <address className="mb-3" >
                                     <p>#7 Big Kannara Street</p>
@@ -25,7 +25,7 @@ export const Footer = () => {
                                 </div>
 
                             </div>
-                            <div className="item2 items  col-lg-3 col-md-6">
+                            <div className="item2 items  col-lg-3 col-md-5">
 
                                 <h5>Useful Links</h5>
                                 <ul>
@@ -36,7 +36,7 @@ export const Footer = () => {
                                     <li><a href=""><i class="bi bi-caret-right-fill mr-1"></i>Privacy policy</a></li>
                                 </ul>
                             </div>
-                            <div className="item3 items col-md-6 col-lg-3">
+                            <div className="item3 items col-md-5 col-lg-3">
                                 <h5 >Our Services</h5>
 
                                 <ul>
@@ -51,7 +51,7 @@ export const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className=" footer-t-right ">
+                    <div className=" footer-t-right col-lg-3 col-md-6  align-middle ">
                         <img src="https://a1ideaz.com/assets/img/logo-white.png" className='img-fluid' alt="" />
 
                     </div>

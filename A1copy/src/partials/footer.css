@@ -8,10 +8,7 @@ li{
 }
 
 
-.footer-menu{
-    flex-wrap: wrap;
-    
-}
+
 
 .social div{
     width: 3rem;
@@ -43,22 +40,8 @@ li{
     justify-content: space-between;
    
 }
-.footer-top{
-    display: flex;
-    flex-wrap: wrap;
-    
- 
-    
-}
-.footer-t-left{
-    flex-basis: 70%;
-}
-.footer-t-right{
-    flex-basis:30% ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+
 .items ul li {
 margin-bottom: 1rem;
 }
