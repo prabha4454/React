@@ -23,21 +23,33 @@ export const Form1 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formDataToSend = new FormData();
+    /* let formDataToSend = new FormData();
     formDataToSend.append("fname", formData.fname);
     formDataToSend.append("lname", formData.lname);
     formDataToSend.append("dob", formData.dob);
     formDataToSend.append("gender", formData.gender);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("phone", formData.phone);
-
+ */
+    
     try {
-      const response = await fetch("http://localhost:5000/submit", {
-        method: "POST",
-        body: formDataToSend,
-      });
+        const response = await fetch("http://localhost:5000/submit", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
 
       const result = response.json();
+
+      formDataSet({
+        fname:'',
+        lname:'',
+        dob:'',
+        gender:'',
+        email:'',
+        phone:'',
+        
+      })
       console.log(result);
     } catch (error) {
       console.log(error);

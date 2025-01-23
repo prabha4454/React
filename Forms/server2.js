@@ -1,0 +1,134 @@
+const express = require("express");
+const multer = require("multer");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const path = require("path");
+
+const app = express();
+const PORT = 5000;
+
+// Connect to MongoDB
+mongoose
+  .connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+// MongoDB Schema and Model
+const userSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+  phoneNumber: String,
+  userImage: String, // Store the file path or URL of the uploaded image
+});
+
+const User = mongoose.model("User", userSchema);
+
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
+app.use("/uploads", express.static("uploads")); // Serve uploaded files statically
+
+// Multer Configuration for File Upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Directory to store uploaded files
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname); // Unique file name
+  },
+});
+
+const upload = multer({ storage });
+
+// Route to handle form submission
+app.post("/submit", upload.single("userImage"), async (req, res) => {
+  const { name, age, phoneNumber } = req.body;
+  const userImage = req.file ? `/uploads/${req.file.filename}` : null;
+
+  try {
+    // Save data to MongoDB
+    const newUser = new User({
+      name,
+      age,
+      phoneNumber,
+      userImage,
+    });
+
+    const savedUser = await newUser.save();
+
+    res.status(201).json({
+      message: "Form submitted and data saved to MongoDB successfully!",
+      data: savedUser,
+    });
+  } catch (error) {
+    console.error("Error saving data to MongoDB:", error);
+    res.status(500).json({ message: "Error saving data", error });
+  }
+});
+
+// Get all users
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ message: "Error fetching users", error });
+  }
+});
+
+// Update user by ID
+app.put("/users/:id", upload.single("userImage"), async (req, res) => {
+  const { id } = req.params;
+  const { name, age, phoneNumber } = req.body;
+  const userImage = req.file ? `/uploads/${req.file.filename}` : null;
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { name, age, phoneNumber, ...(userImage && { userImage }) },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "User updated successfully",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Error updating user", error });
+  }
+});
+
+// Delete user by ID
+app.delete("/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "User deleted successfully",
+      data: deletedUser,
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ message: "Error deleting user", error });
+  }
+});
+
+
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
