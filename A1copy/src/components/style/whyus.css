@@ -40,7 +40,8 @@
 }
 .why-left{
     flex-basis: 60%;
-    padding: 3rem;
+    padding-block: 3rem;
+  
     
   
 }

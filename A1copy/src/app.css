@@ -9,3 +9,14 @@
 .service-section{
     background-color: #e5e5e5;
 }
+
+
+/* style for animation */
+
+.fade-up{
+    opacity: 0;
+}
+.fade-up.animate__animated{
+    opacity:1;
+    animation-delay: 1s;
+}

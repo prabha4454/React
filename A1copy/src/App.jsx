@@ -1,5 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "animate.css/animate.compat.css"
 import { Home } from "./components/home"
 import { Tools } from "./components/Tools"
 import { About } from "./components/about"
@@ -12,6 +13,7 @@ import { Box } from './components/box';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./app.css"
 import { Whyus } from './components/Whyus';
+import { Contact } from './Contact';
 function App() {
 
 
@@ -106,6 +108,17 @@ function App() {
 </div>
 
 {/* ------------end------------- */}
+
+{/* contact section */}
+
+<div className="contact-section bg-light container-fluid">
+<Container>
+ <Contact></Contact>
+</Container>
+</div>
+
+
+{/* ----------end----------- */}
      
 
 <Footer></Footer>

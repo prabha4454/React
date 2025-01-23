@@ -1,102 +1,157 @@
-import React from 'react'
-import { useState } from 'react'
-import "./css/survayForm.css"
+import React from "react";
+import { useState } from "react";
+import "./css/survayForm.css";
 
 export const Form1 = () => {
-    const [formData, formDataSet] = useState({
-        fname: '',
-        lname: '',
+  const [formData, formDataSet] = useState({
+    fname: "",
+    lname: "",
+    dob: "",
+    gender: "",
+    email: "",
+    phone: "",
+  });
 
-    })
-    return (
-        <>
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
 
-            <div className="survay-form  d-flex justify-content-center align-items-center " style={{ height: '100vh' }}>
-                <form action="" className='form'>
+    formDataSet({ ...formData, [name]: value });
+    console.log(formData);
+  };
 
-                    {/* ----------For first name ---------- */}
-                    <p>
-                        <label htmlFor="fname">FirstName:</label>
-                        <input
-                            type="text"
-                            id='fname'
-                            name='fname'
-                            value={formData.fname}
-                            className='form-control'
-                            placeholder='Enter Your FirstName'
-                            required />
-                    </p>
+  /* handle submit function */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                    {/* ------ For Last Name ----------*/}
+    const formDataToSend = new FormData();
+    formDataToSend.append("fname", formData.fname);
+    formDataToSend.append("lname", formData.lname);
+    formDataToSend.append("dob", formData.dob);
+    formDataToSend.append("gender", formData.gender);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("phone", formData.phone);
 
-                    <p>
-                        <label htmlFor="lname">LastName:</label>
-                        <input
-                            type="text"
-                            id='lname'
-                            name='lname'
-                            value={formData.lname}
-                            className='form-control'
-                            placeholder='Enter Your LastName'
-                            required />
-                    </p>
+    try {
+      const response = await fetch("http://localhost:5000/submit", {
+        method: "POST",
+        body: formDataToSend,
+      });
 
+      const result = response.json();
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-                    {/* ---- Age ----- */}
+  return (
+    <>
+      <div
+        className="survay-form  d-flex justify-content-center align-items-center "
+        style={{ height: "100vh" }}
+      >
+        <form onSubmit={handleSubmit} className="form">
+          {/* ----------For first name ---------- */}
+          <p>
+            <label htmlFor="fname">FirstName:</label>
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              value={formData.fname}
+              onChange={handleInputChange}
+              className="form-control"
+              placeholder="Enter Your FirstName"
+              required
+            />
+          </p>
 
+          {/* ------ For Last Name ----------*/}
 
+          <p>
+            <label htmlFor="lname">LastName:</label>
+            <input
+              type="text"
+              id="lname"
+              name="lname"
+              value={formData.lname}
+              onChange={handleInputChange}
+              className="form-control"
+              placeholder="Enter Your LastName"
+              required
+            />
+          </p>
 
-                    <p>
-                        <div className="row">
-                            <div className="form-group">
-                                <label htmlFor="dob">Date of Birth:</label>
-                                <input type="date" name="" id="" className='form-control' />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="gender">Gender:</label>
-                                <select name="" id="" className="form-control ">
-                                    <option value="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+          {/* ---- Age ----- */}
 
-
-                                </select>
-                            </div>
-                        </div>
-                    </p>
-
-
-                    {/* ----- Email ------- */}
-
-                    <p>
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            value={formData.email}
-                            className='form-control'
-                            placeholder='Enter Your Email'
-                            required />
-                    </p>
-
-                    {/* ------for phone Number ------ */}
-
-                    <p>
-                        <label htmlFor="phone">Phone:</label>
-                        <input type="tel"
-                            name="phone"
-                            id="phone"
-                            value={formData.phone}
-                            placeholder='+91'
-                            className='form-control'
-                        />
-                    </p>
-
-                    <button className='btn btn-secondary mx-auto d-block ' >Submit</button>
-                </form>
+          <p>
+            <div className="row">
+              <div className="form-group">
+                <label htmlFor="dob">Date of Birth:</label>
+                <input
+                  type="date"
+                  name="dob"
+                  id="dob"
+                  value={formData.dob}
+                  onChange={handleInputChange}
+                  className="form-control"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="gender">Gender:</label>
+                <select
+                  name="gender"
+                  id="gender"
+                  onChange={handleInputChange}
+                  className="form-control "
+                >
+                  <option value="">Select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
             </div>
+          </p>
 
-        </>
-    )
-}
+          {/* ----- Email ------- */}
+
+          <p>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="form-control"
+              placeholder="Enter Your Email"
+              required
+            />
+          </p>
+
+          {/* ------for phone Number ------ */}
+
+          <p>
+            <label htmlFor="phone">Phone:</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              placeholder="+91"
+              className="form-control"
+            />
+          </p>
+
+          <input
+            type="submit"
+            className="btn btn-secondary d-block mx-auto"
+            value="Submit"
+          />
+        </form>
+      </div>
+    </>
+  );
+};

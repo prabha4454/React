@@ -2,6 +2,7 @@
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button"; */
 import "./style/whyus.css";
+import ScrollAnimation from 'react-animate-on-scroll';
 
 export const Whyus = () => {
   return (
@@ -11,7 +12,8 @@ export const Whyus = () => {
           <h1>Why us ?</h1>
           <p>Partner with A1ideaz to embark on a transformative journey where technology meets business goals.</p>
           <div className="whyus w-100">
-            <div className="why-left">
+            <ScrollAnimation animateIn="fadeInLeft" delay="100" className="why-left"  animateOnce="true">
+            <div >
               <ul>
                 <li >
                
@@ -60,9 +62,13 @@ export const Whyus = () => {
                 </li>
               </ul>
             </div>
-            <div className="home-right">
+            </ScrollAnimation>
+            <ScrollAnimation animateIn="fadeInUp" delay="100"   className="home-right" animateOnce="true">
+
+            <div>
               <img src="/images/why-us.png" alt="" className="img-fluid" />
             </div>
+            </ScrollAnimation>
           </div>
         </div>
       </div>

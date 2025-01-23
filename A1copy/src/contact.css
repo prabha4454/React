@@ -1,0 +1,9 @@
+.contact .items{
+    transition: 0.5s;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+ .contact .items:hover{
+    box-shadow: 0 0 10px gray;
+}
