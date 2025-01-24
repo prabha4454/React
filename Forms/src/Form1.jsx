@@ -11,6 +11,7 @@ export const Form1 = () => {
     email: "",
     phone: "",
   });
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
