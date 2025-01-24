@@ -1,69 +1,17 @@
 import React from "react";
-import { useState } from "react";
+
 import "./css/survayForm.css";
 
-export const Form1 = () => {
-  const [formData, formDataSet] = useState({
-    fname: "",
-    lname: "",
-    dob: "",
-    gender: "",
-    email: "",
-    phone: "",
-  });
-  
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-
-    formDataSet({ ...formData, [name]: value });
-    console.log(formData);
-  };
-
-  /* handle submit function */
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    /* let formDataToSend = new FormData();
-    formDataToSend.append("fname", formData.fname);
-    formDataToSend.append("lname", formData.lname);
-    formDataToSend.append("dob", formData.dob);
-    formDataToSend.append("gender", formData.gender);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("phone", formData.phone);
- */
-    
-    try {
-        const response = await fetch("http://localhost:5000/submit", {
-          method: "POST",
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
-
-      const result = response.json();
-
-      formDataSet({
-        fname:'',
-        lname:'',
-        dob:'',
-        gender:'',
-        email:'',
-        phone:'',
-        
-      })
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const Form1 = (props) => {
+  const { submit,input ,formData} = props;
 
   return (
     <>
       <div
         className="survay-form  d-flex justify-content-center align-items-center "
-        style={{ height: "100vh" }}
+        style={{  }}
       >
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={submit} className="form">
           {/* ----------For first name ---------- */}
           <p>
             <label htmlFor="fname">FirstName:</label>
@@ -72,7 +20,7 @@ export const Form1 = () => {
               id="fname"
               name="fname"
               value={formData.fname}
-              onChange={handleInputChange}
+              onChange={input}
               className="form-control"
               placeholder="Enter Your FirstName"
               required
@@ -88,7 +36,7 @@ export const Form1 = () => {
               id="lname"
               name="lname"
               value={formData.lname}
-              onChange={handleInputChange}
+              onChange={input}
               className="form-control"
               placeholder="Enter Your LastName"
               required
@@ -106,7 +54,7 @@ export const Form1 = () => {
                   name="dob"
                   id="dob"
                   value={formData.dob}
-                  onChange={handleInputChange}
+                  onChange={input}
                   className="form-control"
                   required
                 />
@@ -116,7 +64,7 @@ export const Form1 = () => {
                 <select
                   name="gender"
                   id="gender"
-                  onChange={handleInputChange}
+                  onChange={input}
                   className="form-control "
                 >
                   <option value="">Select Gender</option>
@@ -136,7 +84,7 @@ export const Form1 = () => {
               name="email"
               id="email"
               value={formData.email}
-              onChange={handleInputChange}
+              onChange={input}
               className="form-control"
               placeholder="Enter Your Email"
               required
@@ -152,7 +100,7 @@ export const Form1 = () => {
               name="phone"
               id="phone"
               value={formData.phone}
-              onChange={handleInputChange}
+              onChange={input}
               placeholder="+91"
               className="form-control"
             />
