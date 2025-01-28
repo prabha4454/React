@@ -1,7 +1,7 @@
 import React from 'react';
-import { ShoppingCart, User, Search } from 'lucide-react';
+/* import { ShoppingCart, User, Search } from 'lucide-react';
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"; */
 
 export const Header = () => {
   return (
@@ -14,14 +14,14 @@ export const Header = () => {
 
         {/* Search Bar */}
         <div className="flex items-center w-1/2 max-w-lg">
-          <Input
+          {/* <Input
             type="text"
             placeholder="Search for products..."
             className="flex-grow border-gray-300 rounded-l-md"
-          />
-          <Button className="rounded-l-none">
+          /> */}
+          {/* <Button className="rounded-l-none">
             <Search size={20} />
-          </Button>
+          </Button> */}
         </div>
 
         {/* Icons */}

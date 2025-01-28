@@ -1,10 +1,11 @@
 import React from 'react'
 
-export const Upload = () => {
+export const Upload = (props) => {
+    const {productData ,upload , handleFileChange , handleInputChange} = props;
   return (
     <>
-    <div className="product-form">
-        <form method=' post' onSubmit={handdleProductUpload} className='form'>
+    <div className="product-form col-md-4 col-lg-4">
+        <form  onSubmit={upload} className='form'>
 <p>
     <label for="pname">Product Name:</label>
     <input 
@@ -13,6 +14,7 @@ export const Upload = () => {
     placeholder="Enter product name" 
     className='form-control'
     value={productData.name}
+    onChange={handleInputChange}
     required/>
 
 </p>
@@ -20,25 +22,27 @@ export const Upload = () => {
 {/* for product description */}
 
 <p>
-    <label htmlFor="pdescription"></label>
+    <label htmlFor="pdescription">Description:</label>
     <textarea
     name="description"
     placeholder="Enter product description"
     className='form-control'
     value={productData.description}
+    onChange={handleInputChange}
     required/>
     
 </p>
 
 {/* for product price */}
 <p>
-    <label for="pprice">Product Price:</label>
+    <label htmlFor="pprice">Product Price:</label>
     <input
-    type="number"
+    type="text"
     name="price"
     placeholder="Enter product price"
     className='form-control'
     value={productData.price}
+    onChange={handleInputChange}
     required/>
 
 </p>
@@ -49,8 +53,10 @@ export const Upload = () => {
     <label for="pimage">Product Image:</label>
     <input 
     type="file" 
-    name="image" 
+    name="pimg" 
     className='form-control' 
+  
+    onChange={handleFileChange}
     required/>
 
 </p>
@@ -60,4 +66,4 @@ export const Upload = () => {
     </div>
     </>
   )
-}
+};

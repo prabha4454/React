@@ -1,9 +1,10 @@
 import React from 'react'
 
-export const Product = () => {
+export const Product = (props) => {
+    const {products ,handleAddToCart} = props;
   return (
     <>
-    <h1> products </h1>
+    
     <div className="products">
         <div className="row">
             {products.map((product , index)=>(
@@ -15,7 +16,9 @@ export const Product = () => {
                             <h5 className="card-title">{product.name}</h5>
                             <p className="card-text">{product.description}</p>
                             <p className="card-text">Price: {product.price}</p>
-                            <button className="btn btn-primary">AddToCart</button>
+                            <button className="btn 
+                            btn-primary"
+                            onClick={()=>handleAddToCart(product)}>Add to Cart</button>
                             </div>
                     </div>
                 </div>
