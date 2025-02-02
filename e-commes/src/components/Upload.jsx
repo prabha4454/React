@@ -4,8 +4,8 @@ export const Upload = (props) => {
     const {productData ,upload , handleFileChange , handleInputChange} = props;
   return (
     <>
-    <div className="product-form col-md-4 col-lg-4">
-        <form  onSubmit={upload} className='form'>
+    <div className="product-form col-md-8 d-block mx-auto col-sm-8  m-3">    
+        <form  onSubmit={upload} className='form w-100 p-4'>
 <p>
     <label for="pname">Product Name:</label>
     <input 

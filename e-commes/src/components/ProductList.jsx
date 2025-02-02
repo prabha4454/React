@@ -18,6 +18,7 @@ export const ProductList = (props) => {
                         <th>PRODUCT NAME</th>
 
                         <th>PRICE</th>
+                        <th>ACTION</th>
                        
                     </tr>
                     </thead>
@@ -30,8 +31,8 @@ export const ProductList = (props) => {
                             <td>{product.price}</td>
                             
                             <td className='d-flex gap-2'>
-                                <button className='btn btn-primary' onClick={() => updateUser(product)}>edit</button>
-                                <button className="btn btn-danger" onClick={() => deleteuser(product._id)}>
+                                <button className='btn btn-primary' onClick={() => updateProduct(product)}>edit</button>
+                                <button className="btn btn-danger" onClick={() => deleteProduct(product._id)}>
                                     Delete
                                 </button>
                             </td>

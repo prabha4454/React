@@ -4,6 +4,8 @@ import { useEffect } from "react"
 import {Product} from "./components/Product"
 import {Cart} from "./components/Cart"
 import {Upload} from "./components/Upload"
+import { ProductList } from './components/ProductList';
+import Portfolio from './components/Portfolio';
 
 /* import { Header } from "./components/header";
 
@@ -13,7 +15,7 @@ function App() {
   const [productData , setProductData] = useState(
     { 
       name :'',
-      pimg : '',
+      pimg : null,
       price : '',
       description : ''
 
@@ -38,6 +40,7 @@ function App() {
 const handleInputChange = (e) => {
   const { name, value } = e.target;
   setProductData({...productData , [name]: value});
+  console.log(productData);
   };
 /* to handle input file */
 
@@ -74,11 +77,11 @@ setProductData({...productData , pimg : e.target.files[0]});
 
 /* for add to cart */
 
-const handleAddToCart = async (product) => {
+const handleAddToCart = async (id) => {
   try{
-    const response = await fetch('http://localhost:5000/cart', {
+    const response = await fetch(`http://localhost:5000/addToCart/${id}`, {
       method: 'POST',
-      body: product
+     
     });
 
     const result =  await response.json();
@@ -100,20 +103,19 @@ const handleAddToCart = async (product) => {
   const handleProductUpload = async (e) => {
     e.preventDefault();
 
-    /* let formDataToSend = new FormData();
-    formDataToSend.append("fname", formData.fname);
-    formDataToSend.append("lname", formData.lname);
-    formDataToSend.append("dob", formData.dob);
-    formDataToSend.append("gender", formData.gender);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("phone", formData.phone);
- */
+    let formDataToSend = new FormData();
+    formDataToSend.append("name", productData.name);
+    formDataToSend.append("price", productData.price);
+    formDataToSend.append("description", productData.description);
+    formDataToSend.append("pimg", productData.pimg);
+ 
+
     
     try {
         const response = await fetch("http://localhost:5000/upload", {
           method: "POST",
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(productData),
+          
+          body:formDataToSend
         });
 
       const result = response.json();
@@ -137,7 +139,7 @@ const handleAddToCart = async (product) => {
 
   const productList = async()=>{
     try{
-      const response = await fetch('http://localhost:5000/products')
+      const response = await fetch('http://localhost:5000/products',)
       const data = await response.json();
       setProducts(data);
     }
@@ -146,6 +148,39 @@ catch{
 }
     }
 
+
+    /* for handle delete product and cart */
+
+    const handleDeleteProduct = async(id) => {
+      try {
+const response= await  fetch(`http://localhost:5000/product/${id}`,{
+          method:"DELETE"
+        }) 
+        const result = await response.json();
+        console.log(result);
+        productList();
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+
+    const handleDeleteCart = async(id) => {
+      try {
+       const response = await fetch(`http://localhost:5000/cart/${id}`, {
+          method:"DELETE"
+        });
+
+        const result = await response.json();
+        productList();
+         cartList();
+        console.log(result);
+       
+       
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
   
   return (
@@ -157,22 +192,44 @@ catch{
       {/* for main */}
 
       <main>
-        <div className="ecommes-site-section row justify-content-between" style={{height:"100vh"}}>
-          <div className="products-section col-md-6  ">
+        <div className="ecommes-site-section overflow-auto row justify-content-between " style={{height:"100vh"}}>
+          <div className="products-section col-md-8 overflow-auto " style={{height:"100vh"}}>
           <h1 className='text-center h1 text-danger bg-dark'> PRODUCTS</h1>
            <Product  products={products} handleAddToCart={handleAddToCart} />
           </div>
-          <div className="cart-section col-md-6 col-lg-4">
+          <div className="cart-section overflow-auto col-md-6 col-lg-4 d-block border" style={{height:"100vh"}}>
           <h1 className="h1 text-center text-secondary bg-dark "> CART ITEMS</h1>
-            <Cart cart={cartItems}></Cart>
+            <Cart
+             cartItems={cartItems}
+            handleDelete = {handleDeleteCart}/>
           </div>
 
         </div>
 
 <div className="row">
-<Upload upload ={handleProductUpload} productData={productData} handleInputChange = {handleInputChange} handleFileChange ={handleFileChange} />
+  <div className="form-section col-md-6">
+    <h1 className="h1 text-center text-secondary bg-dark ">ADD PRODUCTS </h1>
+  <Upload 
+ upload ={handleProductUpload} 
+ productData={productData} 
+ handleInputChange = {handleInputChange} 
+ handleFileChange ={handleFileChange} />
+  </div>
+
+  <div className="products-list col-md-6">
+  <h1 className="h1 text-center text-secondary bg-dark ">PRODUCTS DETAILS</h1>
+    <ProductList 
+    products={products}
+    deleteProduct={handleDeleteProduct}
+    handleEditProduct=''
+    />
+  </div>
+
+
+
 </div>
         
+        <Portfolio></Portfolio>
 
       
       </main>
