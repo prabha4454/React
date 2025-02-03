@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const Upload = (props) => {
-    const {productData ,upload , handleFileChange , handleInputChange} = props;
+    const {productData ,upload , handleFileChange , handleInputChange,edit} = props;
   return (
     <>
     <div className="product-form col-md-8 d-block mx-auto col-sm-8  m-3">    
@@ -61,7 +61,7 @@ export const Upload = (props) => {
 
 </p>
 
-<button type='submit ' className='btn btn-secondary '>Upload</button>
+{edit? <button type='submit ' className='btn btn-secondary '>Edit </button>: <button type='submit ' className='btn btn-secondary '>Upload </button>}
         </form>
     </div>
     </>

@@ -1,10 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route ,Link } from 'react-router-dom';
 
 export const Product = (props) => {
     const { products, handleAddToCart } = props;
     return (
         <>
             <div className="products">
+                <Link to = '/cart' className='btn btn-primary'>Cart</Link>
                 <div className="row p-4">
                     {products.map((product, index) => (
                         <div className="col-md-4 col-sm-5 col-lg-4 py-2 mx-auto" key={index}>
@@ -15,7 +17,7 @@ export const Product = (props) => {
                                         alt={product.name}
                                         style={{ width: "10rem", height: "10rem" }}
                                         className='d-block mx-auto border'
-                                        onError={(e) => { e.target.onerror = null; e.target.src = 'path/to/fallback/image.png'; }}
+                                        /* onError={(e) => { e.target.onerror = null; e.target.src = 'path/to/fallback/image.png'; }} */
                                     />
                                 )}
                                 <div className="card-body text-center">

@@ -5,6 +5,7 @@ import {Product} from "./components/Product"
 import {Cart} from "./components/Cart"
 import {Upload} from "./components/Upload"
 import { ProductList } from './components/ProductList';
+import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 import Portfolio from './components/Portfolio';
 
 /* import { Header } from "./components/header";
@@ -191,7 +192,7 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
 
       {/* for main */}
 
-      <main>
+      {/* <main>
         <div className="ecommes-site-section overflow-auto row justify-content-between " style={{height:"100vh"}}>
           <div className="products-section col-md-8 overflow-auto " style={{height:"100vh"}}>
           <h1 className='text-center h1 text-danger bg-dark'> PRODUCTS</h1>
@@ -221,7 +222,7 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
     <ProductList 
     products={products}
     deleteProduct={handleDeleteProduct}
-    handleEditProduct=''
+    editProduct=''
     />
   </div>
 
@@ -232,7 +233,24 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
         <Portfolio></Portfolio>
 
       
-      </main>
+      </main> */}
+
+<Router>
+  <Routes>
+    <Route path="/" element={<div className="products-section p-5" >
+          <h1 className='text-center h1 text-danger bg-dark'> PRODUCTS</h1>
+           <Product  products={products} handleAddToCart={handleAddToCart} />
+          </div>} />
+
+          <Route path='/cart' element={<div className="cart-section ">
+          <h1 className="h1 text-center text-secondary bg-dark "> CART ITEMS</h1>
+            <Cart
+             cartItems={cartItems}
+            handleDelete = {handleDeleteCart}/>
+          </div>} />
+  </Routes>
+</Router>
+
     </>
   )
 }
