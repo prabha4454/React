@@ -7,6 +7,7 @@ import {Upload} from "./components/Upload"
 import { ProductList } from './components/ProductList';
 import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 import Portfolio from './components/Portfolio';
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 /* import { Header } from "./components/header";
 
@@ -32,7 +33,7 @@ function App() {
   );
   const [total , setTotal] = useState(0);
 
-  const [products , setProducts] = useState([]);
+  
   const [cartItems , setCart] = useState([]);
 
   
@@ -138,15 +139,28 @@ const handleAddToCart = async (id) => {
   
   /* to fetch products details */
 
-  const productList = async()=>{
-    try{
-      const response = await fetch('http://localhost:5000/products',)
-      const data = await response.json();
-      setProducts(data);
-    }
-catch{
-  console.log('error')
-}
+  const ProductsHome = ()=>{
+    
+      /* const response = await fetch('http://localhost:5000/products',)
+      const data = await response.json(); */
+      const {data , error , isloading } = useQuery('products', async ()=>{
+        const response = await axios.get('http://localhost:5000/products');
+        return response.data
+
+      })
+   
+return(
+  <>
+  {isloading ? <div>Loading...</div> : null }
+  {error ? <div>error</div> : null }
+  {!error && !isloading ?
+  <div className="products-section " >
+  <h1 className='text-center h1 text-danger bg-dark'> PRODUCTS</h1>
+   <Product  products={data} handleAddToCart={handleAddToCart} />
+  </div> :null}
+  
+          </>
+)
     }
 
 
@@ -183,7 +197,7 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
       }
     }
 
-  
+    const queryClient = new QueryClient()
   return (
     <>
 
@@ -237,10 +251,7 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
 
 <Router>
   <Routes>
-    <Route path="/" element={<div className="products-section p-5" >
-          <h1 className='text-center h1 text-danger bg-dark'> PRODUCTS</h1>
-           <Product  products={products} handleAddToCart={handleAddToCart} />
-          </div>} />
+    <Route path="/" element={<QueryClientProvider client={queryClient}><ProductsHome /></QueryClientProvider>} />
 
           <Route path='/cart' element={<div className="cart-section ">
           <h1 className="h1 text-center text-secondary bg-dark "> CART ITEMS</h1>
