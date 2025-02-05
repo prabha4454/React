@@ -14,15 +14,7 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
  */
 function App() {
 
-  const [productData , setProductData] = useState(
-    { 
-      name :'',
-      pimg : null,
-      price : '',
-      description : ''
-
-    }
-  );
+  
   const [cartData , setCartData] = useState(
     {
       name:'',
@@ -39,17 +31,10 @@ function App() {
   
 /* to handdle form inputs */
 
-const handleInputChange = (e) => {
-  const { name, value } = e.target;
-  setProductData({...productData , [name]: value});
-  console.log(productData);
-  };
+
 /* to handle input file */
 
-const handleFileChange = (e) => {
 
-setProductData({...productData , pimg : e.target.files[0]});
-};
   
 
   /* to fetch cart details  */
@@ -69,7 +54,7 @@ setProductData({...productData , pimg : e.target.files[0]});
 
   useEffect(() => {
     console.log("use effect is called");
-    productList();
+   
     cartList();
     
     }, []);
@@ -88,7 +73,7 @@ const handleAddToCart = async (id) => {
 
     const result =  await response.json();
   
-    productList();
+  
     cartList();
     console.log(result)
   
@@ -102,82 +87,34 @@ const handleAddToCart = async (id) => {
 
 
 /* to upload product data */
-  const handleProductUpload = async (e) => {
-    e.preventDefault();
-
-    let formDataToSend = new FormData();
-    formDataToSend.append("name", productData.name);
-    formDataToSend.append("price", productData.price);
-    formDataToSend.append("description", productData.description);
-    formDataToSend.append("pimg", productData.pimg);
- 
-
-    
-    try {
-        const response = await fetch("http://localhost:5000/upload", {
-          method: "POST",
-          
-          body:formDataToSend
-        });
-
-      const result = response.json();
-
-      setProductData({
-        name :'',
-      pimg : null ,
-      price : '',
-      description : ''
-      });
-      productList();
-      cartList();
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  
   
   /* to fetch products details */
 
-  const ProductsHome = ()=>{
+  /* const ProductsHome = ()=>{ */
     
       /* const response = await fetch('http://localhost:5000/products',)
       const data = await response.json(); */
-      const {data , error , isloading } = useQuery('products', async ()=>{
+      /* const {data , error , isloading } = useQuery('products', async ()=>{
         const response = await axios.get('http://localhost:5000/products');
         return response.data
 
       })
-   
-return(
+    */
+/* return(
   <>
-  {isloading ? <div>Loading...</div> : null }
-  {error ? <div>error</div> : null }
-  {!error && !isloading ?
-  <div className="products-section " >
-  <h1 className='text-center h1 text-danger bg-dark'> PRODUCTS</h1>
+  
    <Product  products={data} handleAddToCart={handleAddToCart} />
-  </div> :null}
+
   
           </>
 )
-    }
+    } */
 
 
     /* for handle delete product and cart */
 
-    const handleDeleteProduct = async(id) => {
-      try {
-const response= await  fetch(`http://localhost:5000/product/${id}`,{
-          method:"DELETE"
-        }) 
-        const result = await response.json();
-        console.log(result);
-        productList();
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    
 
 
     const handleDeleteCart = async(id) => {
@@ -187,7 +124,7 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
         });
 
         const result = await response.json();
-        productList();
+    
          cartList();
         console.log(result);
        
@@ -251,7 +188,7 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
 
 <Router>
   <Routes>
-    <Route path="/" element={<QueryClientProvider client={queryClient}><ProductsHome /></QueryClientProvider>} />
+    <Route path="/" element={<QueryClientProvider client={queryClient }><Product handleAddToCart={handleAddToCart} /></QueryClientProvider>} />
 
           <Route path='/cart' element={<div className="cart-section ">
           <h1 className="h1 text-center text-secondary bg-dark "> CART ITEMS</h1>
@@ -259,6 +196,13 @@ const response= await  fetch(`http://localhost:5000/product/${id}`,{
              cartItems={cartItems}
             handleDelete = {handleDeleteCart}/>
           </div>} />
+
+          <Route path='/add-products' element={<Upload />} />
+
+          <Route path='/products-list' element={<QueryClientProvider client={queryClient }><ProductList 
+
+    
+    /> </QueryClientProvider>}/>
   </Routes>
 </Router>
 
