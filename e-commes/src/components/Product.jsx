@@ -22,6 +22,7 @@ export const Product = (props) => {
                     <h1 className='text-center h1 text-danger bg-dark'> PRODUCTS</h1>
                     <div className="products">
                         <Link to='/cart' className='btn btn-primary'>Cart</Link>
+                        <Link to='/add-products' className='btn btn-primary'>Add Proudct</Link>
                         <div className="row p-4">
                             {data.map((product, index) => (
                                 <div className="col-md-3 col-sm-4 col-5 col-lg-2 py-2 mx-auto" key={index}>

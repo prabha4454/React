@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 export const Upload = (props) => {
   
@@ -62,7 +63,8 @@ export const Upload = (props) => {
     
   return (
     <>
-    <div className="product-form col-md-8 d-block mx-auto col-sm-8  m-3">    
+    <div className="product-form col-md-8 d-block mx-auto col-sm-8  m-3">  
+    <Link to='/products-list' className='btn btn-primary'>Productslist</Link>  
         <form  onSubmit={handleProductUpload} className='form w-100 p-4'>
 <p>
     <label for="pname">Product Name:</label>
