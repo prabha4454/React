@@ -43,7 +43,7 @@ export const RegisterForm = () => {
 
                 onSubmit={(values, { setSubmitting }) => {
                     // Send data to the backend API
-                    fetch('http://localhost:5000/api/register', {
+                    fetch('http://localhost:5000/api/auth/register', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify(values),

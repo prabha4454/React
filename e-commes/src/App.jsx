@@ -8,6 +8,7 @@ import { ProductList } from './components/ProductList';
 import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 import Portfolio from './components/Portfolio';
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { RegisterForm } from './components/RegisterForm';
 
 /* import { Header } from "./components/header";
 
@@ -200,9 +201,11 @@ const handleAddToCart = async (id) => {
           <Route path='/add-products' element={<Upload />} />
 
           <Route path='/products-list' element={<QueryClientProvider client={queryClient }><ProductList 
+          
+    /> </QueryClientProvider>}/>
+    <Route path = "/register" element = {<RegisterForm />} />
 
     
-    /> </QueryClientProvider>}/>
   </Routes>
 </Router>
 
