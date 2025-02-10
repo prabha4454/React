@@ -3,35 +3,59 @@ import * as Yup from "yup"; // Form validation
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import axios from 'axios';
+import { useState , useRef} from "react";
+import { motion } from "framer-motion"; 
 
 
 import React from 'react'
 
 export const RegisterForm = () => {
 
+
+    const [response , setResponse] =useState('')
+
+    const register = useRef(null)
+
     const validationSchema = Yup.object({
 
         name: Yup.string()
             .required("Name is Required"),
         email: Yup
-            .email("Enter Valid Email")
+            .string()
             .required("Email is Required"),
         phone: Yup
             .number()
-            .max(10, "number is not valid")
+            .min(9, "number is not valid")
             .required("phone Number is required"),
         password: Yup
+        .string()
             .min(8, "password should atleast 8 charecter")
             .required("password is required"),
         conformpassword: Yup
+        .string()
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
             .required('Confirm Password is required'),
 
     })
 
+    /* page variants for motion.div framer motion */
+
+    const pageVariants = {
+        initial: { opacity: 0, x: "-100vw" },
+        animate: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: "100vw" },
+        transition: { type: "spring", stiffness: 50 },
+      };
+      
+    const handdleResponse = async()=>{
+        register.current.focus()
+    }
+
     return (
         <>
+       
             <Formik
+            
                 initialValues={{
                     name: "",
                     email: "",
@@ -51,6 +75,8 @@ export const RegisterForm = () => {
                       .then((response) => response.json())
                       .then((data) => {
                         console.log('Server response:', data);
+                        console.log(data.message)
+                        setResponse(data.message)
                         setSubmitting(false);
                       })
                       .catch((error) => {
@@ -65,8 +91,21 @@ export const RegisterForm = () => {
             >
 
                 {({ isSubmiting }) => (
-                    { isSubmiting } ? <div>loading...</div> :
-                        <Form>
+                   
+                        <Form className="w-50 mx-auto ">
+    <motion.div
+    ref={register}
+    variants={pageVariants}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    
+    >
+                            <div className="text-center text-success">
+                              {response}
+
+                            </div>
+                            </motion.div>
                             {/* field for fullName */}
 
                             <div className="mb-3">
@@ -158,13 +197,16 @@ export const RegisterForm = () => {
                                 <button
                                     type="submit"
                                     className="btn btn-primary btn-sm d-flex mx-auto"
-                                    disabled={isSubmiting}>
+                                    disabled={isSubmiting}
+                                    onSubmit={handdleResponse}>
                                     Submit
                                 </button>
                             </div>
                         </Form>
                 )}
             </Formik>
+
+            
         </>
     )
 }
