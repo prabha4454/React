@@ -9,18 +9,18 @@ export const Cart = (props) => {
 
         {cartItems.map((item,index) => (
           
-      <div className="cart-list col-md-12 p-3 border mb-2 ">
+      <div className="cart-list  ">
           <div key={index} >
 
-            <div className="cart-item d-flex gap-3 p-1 align-items-center  ">
+            <div className="cart-item max-w-lg d-flex items-center gap-x-2 mx-auto p-3 outline-black/5 shadow-lg rounded-lg mb-3 bg-white outline ">
               <img 
               src= {`http://localhost:5000${item.pimg}`}
               alt={item.name} 
-              style={{width:"6rem",height:"7rem"}} 
-              className="img-fluid border"/>
+              
+              className="size-20 lg:size-30 md:size-25 sm:size-22 rounded-sm"/>
               <div 
-              className="cart-item-name"
-               style={{width:"8rem"}}>
+              className="cart-item-name "
+            >
                 <strong>
                   Product Name:
                 </strong>
