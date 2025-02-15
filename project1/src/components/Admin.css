@@ -1,0 +1,441 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900");
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #fff;
+  background: #12f8ad;
+  overflow-x: hidden;
+}
+a {
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.link {
+  color: #fff;
+}
+
+.link:hover {
+  color: #12f8ad;
+}
+
+p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+h4 {
+  font-weight: 600;
+}
+
+h6 span {
+  padding: 0 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.section {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.full-height {
+  min-height: 100vh;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+.checkbox:checked + label,
+.checkbox:not(:checked) + label {
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 60px;
+  height: 16px;
+  border-radius: 8px;
+  padding: 0;
+  margin: 10px auto;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+.checkbox:checked + label:before,
+.checkbox:not(:checked) + label:before {
+  position: absolute;
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #12f8ad;
+  background-color: #2a2b38;
+  font-family: "unicons";
+  content: "\eb4f";
+  z-index: 20;
+  top: -10px;
+  left: -10px;
+  line-height: 36px;
+  text-align: center;
+  font-size: 24px;
+  transition: all 0.5s ease;
+}
+.checkbox:checked + label:before {
+  transform: translateX(44px) rotate(-270deg);
+}
+.card-3d-wrap {
+  position: relative;
+  width: 440px;
+  max-width: 100%;
+  height: 400px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  margin-top: 40px;
+}
+.card-3d-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: all 600ms ease-out;
+}
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  background-color: #2a2b38;
+  position: absolute;
+  border-radius: 6px;
+  left: 0;
+  top: 0;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.card-back {
+  transform: rotateY(180deg);
+}
+.checkbox:checked ~ .card-3d-wrap .card-3d-wrapper {
+  transform: rotateY(180deg);
+}
+.center-wrap {
+  position: absolute;
+  width: 100%;
+  padding: 0 35px;
+  top: 50%;
+  left: 0;
+  transform: translate3d(0, -50%, 35px) perspective(100px);
+  z-index: 20;
+  display: block;
+}
+.form-group {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.form-style {
+  padding: 13px 20px;
+  padding-left: 55px;
+  height: 48px;
+  width: 100%;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  outline: none;
+  color: #c4c3ca;
+  background-color: #1f2029;
+  border: none;
+  transition: all 200ms linear;
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
+}
+.form-style:focus,
+.form-style:active {
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
+}
+.input-icon {
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 48px;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: left;
+  color: #12f8ad;
+  transition: all 200ms linear;
+}
+.form-group input:-ms-input-placeholder {
+  color: #c4c3ca;
+  opacity: 0.7;
+  transition: all 200ms linear;
+}
+.form-group input::-moz-placeholder {
+  color: #c4c3ca;
+  opacity: 0.7;
+  transition: all 200ms linear;
+}
+.form-group input:-moz-placeholder {
+  color: #c4c3ca;
+  opacity: 0.7;
+  transition: all 200ms linear;
+}
+.form-group input::-webkit-input-placeholder {
+  color: #c4c3ca;
+  opacity: 0.7;
+  transition: all 200ms linear;
+}
+.form-group input:focus:-ms-input-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+.form-group input:focus::-moz-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+.form-group input:focus:-moz-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+.form-group input:focus::-webkit-input-placeholder {
+  opacity: 0;
+  transition: all 200ms linear;
+}
+.btn {
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  padding: 0 30px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  text-align: center;
+  border: none;
+  color: #fff;
+  box-shadow: 0 8px 24px 0 rgba(18, 248, 173, 0.2);
+}
+.btn:active,
+.btn:focus {
+  background-color: #fff;
+  color: #12f8ad;
+  box-shadow: 0 8px 24px 0 rgba(255, 255, 255, 0.2);
+}
+.btn:hover {
+  background-color: #fff;
+  color: #12f8ad;
+  box-shadow: 0 8px 24px 0 rgba(255, 255, 255, 0.2);
+}
+.logo {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  display: block;
+  z-index: 100;
+  transition: all 250ms linear;
+}
+.logo img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+
+/* second admin */
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html {
+	text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	/* line-height: 1.2; */
+	/* font-size: 10px; */
+}
+
+body {
+
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	
+} 
+.form-wrapper {
+	width: 100%;
+	max-width: 480px;
+	margin-inline: auto;
+	padding-inline: 10px;
+}
+.form-group {
+	width: 100%;
+	position: relative;
+}
+.form-group label {
+	display: block;
+	margin-bottom: 10px;
+	padding: 8px 0;
+	color: #fbfbfb;
+	background-color: transparent;
+	font-size: 1rem;
+}
+.form-input {
+	display: block;
+	width: 100%;
+	height: 50px;
+	padding: 10px;
+	background-color: #000;
+	color: #fff;
+	border-radius: 10px;
+	margin: auto;
+	border: 0;
+}
+#validity {
+	position: absolute;
+	top: 3rem;
+	left: 1rem;
+	font-size: 1.25rem;
+	padding: 8px;
+	color: #000;
+}
+.form-input:invalid ~ #validity::after {
+	content: "\2717";
+	color: #ff0055;
+}
+.form-input:valid ~ #validity::after {
+	content: "\2713";
+	color: #80ff80;
+}
+.form-input:invalid {
+	outline: 2px solid #ff538c;
+}
+.form-input:valid {
+	outline: 2px solid #8bff8b;
+}
+.form-hint {
+	display: block;
+	font-size: 0.875rem;
+	margin-top: 8px;
+	color: #ff6200;
+	word-spacing: 2px;
+}
+.form-input:valid ~ .form-hint {
+	display: none;
+}
+.muted {
+	color: dimgray;
+}
+.success {
+	color: #80ff80;
+}
+/* h4 {
+	text-align: center;
+	margin-block: 20px;
+	text-decoration: underline;
+	text-decoration-color: #ff538c;
+	text-decoration-style: double;
+	text-underline-offset: 6px;
+} */
+.form-btn {
+	display: block;
+	width: 100%;
+	padding: 0.75rem;
+	margin-block: 2rem;
+	background-color: #000;
+	border: 0;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 1.25rem;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	user-select: none;
+	transition: 0.4s;
+}
+
+.form-btn:hover {
+	background-color: #80ff80;
+	color: #000;
+	cursor: pointer;
+}
+.form-wrapper small {
+	display: block;
+	text-align: center;
+	position: relative;
+	font-size: 0.75rem;
+}
+.form-wrapper small::before {
+	position: absolute;
+	content: "";
+	left: 5px;
+	top: 10px;
+	width: 210px;
+	height: 1px;
+	background-color: #c8c8c8;
+}
+.form-wrapper small::after {
+	position: absolute;
+	content: "";
+	right: 5px;
+	top: 10px;
+	width: 210px;
+	height: 1px;
+	background-color: #c8c8c8;
+}
+.form-wrapper p {
+	text-align: center;
+	margin: 0.5rem;
+	font-size: 0.875rem;
+}
+.form-wrapper .social-btns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-block: 2rem;
+	gap: 1rem;
+}
+.form-wrapper .social-btns button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.25rem;
+	width: 175px;
+	padding: 0.75rem 1rem;
+	background-color: #fff;
+	color: #222;
+	font-weight: 600;
+	font-size: 1rem;
+	letter-spacing: 1px;
+	border: 0;
+	border-radius: 3px;
+	text-align: center;
+	cursor: pointer;
+}
+.form-wrapper .social-btns button img {
+	width: 18px;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+.form-wrapper .reset-password {
+	display: block;
+	text-align: center;
+	color: #fff;
+	font-weight: 500;
+}

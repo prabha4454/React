@@ -1,0 +1,19 @@
+#a{width: 90%;height: 550px;
+    margin: 40px;background-color: rgb(230, 236, 236);
+    }
+    #r{background-color: rgb(243, 209, 167);width: 50%;height: 550px;float: right;
+        border-top-left-radius: 230px;
+    border-bottom-left-radius: 230px;}
+    #m{width: 50%;height: 550px;float: left;}
+
+    #cont{width: 60%;height: 450px;margin: 100px 0px 0px 100px;text-align: center;}
+    #ic{display: flex;justify-content: space-evenly;}
+    .form-control {border: none;background-color: transparent;}
+
+    .li{margin: 170px 0px 0px 80px; width: 70%;height: 200px;text-align: center;}
+/*anim*/
+
+
+.for{
+    color: black;
+}
